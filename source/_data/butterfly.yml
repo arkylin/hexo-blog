@@ -376,7 +376,7 @@ google_adsense:
 ####    站長驗證    ####
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
-google_site_verification:
+google_site_verification: 3x3J5LytTFfKwMFjrRMLAG5xqLq8YjdCxyagEPju8cU
 
 # Bing Webmaster tools verification setting
 # See: https://www.bing.com/webmaster/
@@ -388,7 +388,7 @@ baidu_site_verification:
 
 # 360 Webmaster tools verification setting
 # see http://zhanzhang.so.com/
-qihu_site_verification:
+qihu_site_verification: 08cacc22aaf560c600c4b3092582456a
 
 # 打賞按鈕
 reward:
