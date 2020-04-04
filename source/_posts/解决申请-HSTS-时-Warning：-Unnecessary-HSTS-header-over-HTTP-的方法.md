@@ -3,6 +3,7 @@ title: 解决申请 HSTS 时 Warning： Unnecessary HSTS header over HTTP 的方
 categories:
   - [技巧]
 tags:
+  - [HSTS]
 date: 2019-10-02 01:26:00
 translate_title: warning-unnecessary-hsts-header-over-http-method-for-hsts-application
 keywords:
