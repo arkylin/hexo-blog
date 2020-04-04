@@ -91,7 +91,8 @@ tag_map:
     转义字符: Escape-Character,
     小内存: Small-Memory,
     虚拟内存: Virtual-Memory,
-    优化参数: Optimize-Parameters
+    优化参数: Optimize-Parameters,
+    跳转: Jump
     }
 
 # Metadata elements
