@@ -3,6 +3,8 @@ title: Android目标一：XML输出 （正在进行中）
 categories:
   - [Android Develop]
 tags:
+  - [安卓]
+  - [XML]
 date: 2020-03-08 00:36:00
 translate_title: android-target-1-xm-x-l-output
 keywords:

@@ -29,7 +29,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: '*/*/*.html'
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -46,7 +46,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
   wrap: true
@@ -67,10 +67,14 @@ category_map:
   {
     学习: Study,
     生活随笔: Life,
-    常用配置: common,
-    技巧: skill,
+    常用配置: Common,
+    技巧: Skill,
     代码: Code,
-    安卓开发: android_develop
+    安卓开发: Android_develop,
+    测评: Evaluation,
+    阿里云: Aliyun,
+    脚本: Script,
+    解决方案: Solution
     }
 tag_map:
   {
@@ -92,7 +96,32 @@ tag_map:
     小内存: Small-Memory,
     虚拟内存: Virtual-Memory,
     优化参数: Optimize-Parameters,
-    跳转: Jump
+    跳转: Jump,
+    花粉: Pollen,
+    花粉俱乐部: Pollen-Club,
+    菜单: Menu,
+    文本操作菜单: Text-Operation-Menu,
+    华为: Huawei,
+    阿里云: Aliyun,
+    加密: Encryption,
+    默认用户: Default-User,
+    脚本: Script,
+    安卓: Android,
+    编译: Compile,
+    查询: Inquire,
+    端口: Port,
+    附件: Annex,
+    静态地址: Static-Address,
+    静态页面: Static-Pages,
+    手写字体: Handwriting-Font,
+    树莓派: Raspberry-Pie,
+    水: Water,
+    特效: Special-Effects,
+    微博: Weibo,
+    运维编排: Operation-And-Maintenance,
+    字体: Fonts,
+    解决方案: Solution,
+    人人通: renrentong
     }
 
 # Metadata elements

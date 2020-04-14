@@ -38,7 +38,7 @@ highlight_copy: true #代碼複製按鈕
 highlight_lang: true #代碼語言顯示
 highlight_shrink: false # true 全部代碼框不展開，需點擊 '>' 打開 / false 代碼框展開，有'>'點擊按鈕 | none 代碼框展開，不顯示 '>' 按鈕
 
-code_word_wrap: false
+code_word_wrap: true
 
 # copy setting
 # 是否禁止複製（如果禁止，highlight_copy的功能將無效)
@@ -575,7 +575,7 @@ aside:
 
 # 網站公告
 announcement:
-  content: 刚刚创建，网站迁移中。。。
+  content: 网站迁移完成。。脚本在文章里面
 
 # busuanzi count for PV / UV in site
 # 訪問人數
@@ -597,7 +597,7 @@ runtimeshow:
 translate:
   enable: true
   # 默認按鈕顯示文字
-  default: 2
+  default: 繁
   #網站默認語言，1: 繁體中文, 2: 簡體中文
   defaultEncoding: 2
   #延遲時間,若不在前, 要設定延遲翻譯時間, 如100表示100ms,默認為0
@@ -607,7 +607,7 @@ translate:
   #當文字是簡體時，按鈕顯示的文字
   msgToTraditionalChinese: "繁"
   #當文字是繁體時，按鈕顯示的文字
-  msgToSimplifiedChinese: "簡"
+  msgToSimplifiedChinese: "简"
 
 #閲讀模式
 readmode:

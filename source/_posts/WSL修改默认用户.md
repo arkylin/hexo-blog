@@ -4,6 +4,7 @@ categories:
   - [技巧]
 tags:
   - [WSL]
+  - [默认用户]
 date: 2020-03-06 16:52:00
 translate_title: wsl-modify-default-user
 keywords:

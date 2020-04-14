@@ -4,6 +4,8 @@ categories:
   - [技巧]
 tags:
   - [HSTS]
+  - [HTTPS]
+  - [443]
 date: 2019-10-02 01:26:00
 translate_title: warning-unnecessary-hsts-header-over-http-method-for-hsts-application
 keywords:

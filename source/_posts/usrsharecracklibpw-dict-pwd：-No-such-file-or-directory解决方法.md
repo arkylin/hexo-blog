@@ -2,7 +2,9 @@
 title: '"/usr/share/cracklib/pw_dict.pwd: No such file or directory"解决方法'
 categories:
   - [技巧]
+  - [解决方案]
 tags:
+  - [密码]
 date: 2020-02-01 15:52:00
 translate_title: usr-share-cracklib-pwdictpwd-no-such-file-or-directory-solution
 keywords:
