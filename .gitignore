@@ -108,3 +108,5 @@ themes/
 public/
 package-lock.json
 db.json
+cloud/
+.deploy_git/

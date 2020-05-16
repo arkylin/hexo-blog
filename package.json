@@ -3,12 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "4.2.0"
+    "version": "4.2.1"
+  },
+  "scripts": {
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
   },
   "dependencies": {
-    "hexo": "^4.2.0",
+    "hexo": "^4.2.1",
+    "hexo-asset-image": "^1.0.0",
     "hexo-cli": "^3.1.0",
-    "hexo-server": "^1.0.0",
+    "hexo-deployer-aliyun-oss": "^0.0.2",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-feed": "^2.2.0",
@@ -17,10 +24,9 @@
     "hexo-generator-sitemap": "^2.0.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-renderer-marked": "^2.0.0",
-    "hexo-renderer-stylus": "^1.1.0",
     "hexo-renderer-pug": "^1.0.0",
-    "hexo-deployer-ali-oss": "^1.0.0",
-    "hexo-asset-image": "^1.0.0",
+    "hexo-renderer-stylus": "^1.1.0",
+    "hexo-server": "^1.0.0",
     "hexo-translate-title-unchange": "^1.0.11-4",
     "hexo-wordcount": "^6.0.1"
   }

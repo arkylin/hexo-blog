@@ -162,6 +162,10 @@ deploy:
   accessKeyId: LTAI4FwbRdqkMc31MZhTjt1e
   accessKeySecret: d97WDrK23jskRR1GTgJdfW7D5AkXCd
   bucket: kylin-blog
+#deploy:
+  #type: git
+  #repository: git@github.com:arkylin/Wblog
+  #branch: master
 
 #Title Translate
 translate_title:
