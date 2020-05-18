@@ -15,6 +15,10 @@ menu:
   #  - 音乐 || /music/ || fa fa-music
   #  - 影视 || /movies/ || fa fa-film
 
+# Favicon
+# ---------------
+favicon: /arv/img/favicon.ico
+
 # PWA
 # See https://github.com/JLHwung/hexo-offline
 # ---------------
@@ -63,7 +67,7 @@ algolia_search:
   labels:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
-    hits_stats: '${hits} results found in ${time} ms'
+    hits_stats: "${hits} results found in ${time} ms"
 
 # Local search
 # Please see doc for more details: https://docs.jerryc.me/config.html#本地搜索
@@ -99,10 +103,6 @@ mermaid:
   enable: false
   # built-in themes: default/forest/dark/neutral
   theme: default
-
-# Favicon
-# ---------------
-favicon: /arv/img/favicon.ico
 
 # Post info settings
 # ---------------
@@ -218,7 +218,7 @@ post_meta:
     categories: true # true or false 文章頁是否顯示分類
     tags: true # true or false 文章頁是否顯示標籤
 
-# Please see doc for more details: https://docs.jerryc.me/config.html#字數統計
+# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#字數統計
 wordcount:
   enable: true
   post_wordcount: true
@@ -271,7 +271,7 @@ addtoany:
 disqus:
   enable: false
   shortname:
-  count: false # dispaly comment count in top_img
+  count: false # top_img顯示評論數
 
 # Disqus.js版評論系統，應對大陸長城的折中方案，兼容原版：https://github.com/SukkaW/DisqusJS
 # API 申請地址：https://disqus.com/api/applications/
@@ -284,7 +284,7 @@ disqusjs:
   api: https://disqus.skk.moe/disqus/ #一般情況下無需修改 API 地址
   admin:
   adminLabel:
-  count: true # dispaly comment count in top_img
+  count: true # top_img顯示評論數
 
 laibili:
   enable: false
@@ -309,20 +309,17 @@ valine:
   enable: true # if you want use valine,please set this value is true
   appId: va3F4N3qz4tHNlHuW5wwGY7j-MdYXbMMI # leancloud application app id
   appKey: 7uByaK8RDwKnPcnSCvJG5uQA # leancloud application app key
-  notify: false # valine mail notify (true/false) Deprecated in v1.4.0+
-  verify: false # valine verify code (true/false) Deprecated in v1.4.0+
+  notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
+  verify: false # valine verify code (true/false)
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  lang: zh-CN # i18n: zh-CN/zh-TW/en/ja
+  lang: zh-cn # i18n: zh-cn/en
   placeholder: 留下你的想法吧！ PS:网址可以不填 # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header info
   recordIP: true # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  emojiCDN: # emoji CDN
-  enableQQ: true # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
-  requiredFields: nick,mail # required fields nick/mail/link
   bg: /arv/img/comment_bg.png # valine background
-  count: true # dispaly comment count in top_img
+  count: true # top_img顯示評論數
 
 # utterances
 # https://utteranc.es/
@@ -334,17 +331,6 @@ utterances:
   # 可選 github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
   light_theme: github-light
   dark_theme: photon-dark
-
-  # Facebook Comments Plugin
-# https://developers.facebook.com/docs/plugins/comments/
-facebook_comments:
-  enable: false
-  app_id:
-  user_id: # optional
-  pageSize: 10 # The number of comments to show
-  order_by: social # social/time/reverse_time
-  lang: zh_CN # Language en_US/zh_CN/zh_TW and so on
-  count: false
 
 #####     Footer Settings    ####
 # ------------------------------------
@@ -425,10 +411,6 @@ related_post:
 # 圖片描述文字
 photofigcaption: true
 
-# anchor
-# when you scroll in post, the url will update according to header id.
-anchor: true
-
 ####    美化/效果    ####
 #--------------------------------
 
@@ -493,7 +475,7 @@ canvas_ribbon_piao:
 # https://github.com/hustcc/canvas-nest.js
 canvas_nest:
   enable: false
-  color: '0,0,255' #color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  color: "0,0,255" #color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
   opacity: 0.7 # the opacity of line (0~1), default: 0.5.
   zIndex: -1 # z-index property of the background, default: -1.
   count: 99 # the number of lines, default: 99.
@@ -519,9 +501,8 @@ click_heart:
 ClickShowText:
   enable: false
   text:
-    - I
-    - LOVE
-    - YOU
+    - 本人
+    - 超帥
   fontSize: 15px
 
 # 網站顯示模式
@@ -532,9 +513,8 @@ display_mode: light
 # 美化頁面顯示
 beautify:
   enable: false
-  field: post # site/post
   title-prefix-icon: '\f0c1'
-  title-prefix-icon-color: '#F47466'
+  title-prefix-icon-color: "#F47466"
 
 # 全局字體
 font:
@@ -563,8 +543,8 @@ subtitle:
   loop: true
   # source調用第三方服務
   # source: false 關閉調用
-  # source: 1  調用搏天api的隨機語錄（簡體） https://api.btstu.cn/
-  # source: 2  調用一言網的一句話（簡體） https://hitokoto.cn/
+  # source: 1  調用金山詞霸的每日一句（簡體）
+  # source: 2  調用一言網的一句話（簡體） #https://hitokoto.cn/
   # source: 3  調用一句網（簡體） http://yijuzhan.com/
   # source: 4  調用今日詩詞（簡體） https://www.jinrishici.com/
   # subtitle 會先顯示 source , 再顯示 sub 的內容
@@ -578,9 +558,6 @@ subtitle:
 fontawesome_v5:
   enable: false
 
-# 加載動畫 Loading Animation
-preloader: false
-
 ####    側邊欄    ####
 #-------------------------------------
 # 側邊欄顯示設置
@@ -588,29 +565,17 @@ aside:
   enable: true
   mobile: true # 手機頁面（ 顯示寬度 < 768px ）是否顯示aside內容
   position: left # left or right
-  card_author:
-    enable: true
-    description:
-  card_announcement:
-    enable: true
-    content: 网站迁移完成。。脚本在文章里面
-  card_recent_post:
-    enable: true
-    limit: 5 # if set 0 will show all
-  card_categories:
-    enable: true
-    limit: 8 # if set 0 will show all
-  card_tags:
-    enable: true
-    limit: 40 # if set 0 will show all
-    color: false
-  card_archives:
-    enable: true
-    type: monthly # yearly or monthly
-    format: MMMM YYYY # eg: YYYY年MM月
-    order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
-    limit: 8 # if set 0 will show all
+  card_author: true
+  card_announcement: true
+  card_recent_post: true
+  card_categories: true
+  card_tags: true
+  card_archives: true
   card_webinfo: true
+
+# 網站公告
+announcement:
+  content: 网站迁移完成。。脚本在文章里面
 
 # busuanzi count for PV / UV in site
 # 訪問人數
@@ -638,7 +603,7 @@ translate:
   #延遲時間,若不在前, 要設定延遲翻譯時間, 如100表示100ms,默認為0
   translateDelay: 0
   #博客網址
-  cookieDomain: 'https://www.xyz.blue'
+  cookieDomain: "https://www.xyz.blue"
   #當文字是簡體時，按鈕顯示的文字
   msgToTraditionalChinese: "繁"
   #當文字是繁體時，按鈕顯示的文字
@@ -681,8 +646,8 @@ fancybox:
 snackbar:
   enable: true
   position: bottom-left
-  bg_light: '#49b1f5' #light mode時彈窗背景
-  bg_dark: '#2d3035' #dark mode時彈窗背景
+  bg_light: "#49b1f5" #light mode時彈窗背景
+  bg_dark: "#2d3035" #dark mode時彈窗背景
 
 #百度推送
 baidu_push:
@@ -715,11 +680,9 @@ note:
   light_bg_offset: 0
 
 # 圖片懶加載
-# https://github.com/ApoorvSaxena/lozad.js
-# lazyload: false
-
 # https://github.com/aFarkas/lazysizes
-lazyload: true
+lazyload:
+  enable: true
 
 # 避免重複網址分散seo
 canonical: true
@@ -738,23 +701,21 @@ Open_Graph_meta: true
 # 開啟hexo自帶的緩存，加快生成速度
 fragment_cache: true
 
-# inject
-# 插入代码到头部</head>之前 和 尾部</body>之前
-inject:
-  head:
-  # - <link rel="stylesheet" href="xxxxx">
-  bottom:
-  # - <script src="xxxx"></script>
+# CDN
+# 網站必須
+# 可根據需要自行添加js/css
+CDN_USE:
+  css:
+    - /css/index.css
+
+  js:
+    - https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js #/js/third-party/jquery.min.js
+    - /js/utils.js
+    - /js/main.js
 
 # CDN
 # 非必要不要修改
 CDN:
-  # main
-  main_css: /css/index.css
-  jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
-  main: /js/main.js
-  utils: /js/utils.js
-
   # comments
   blueimp_md5: https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js
   gitalk: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js
@@ -790,7 +751,7 @@ CDN:
   canvas_ribbon_piao: /js/third-party/piao.js
   canvas_nest: /js/third-party/canvas-nest.js
 
-  lazyload: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js
+  lazyload: https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js
   instantpage: https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js
   typed: https://cdn.jsdelivr.net/npm/typed.js
   js_cookies: https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js
@@ -816,5 +777,4 @@ CDN:
   fontawesome_v4: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
   fontawesome_v5: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
 
-  # 簡繁轉換
   translate: /js/tw_cn.js
