@@ -377,7 +377,7 @@ tencent_analytics:
 google_adsense:
   enable: false
   js: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
-  client:
+  client: ca-pub-1833402444556849
   enable_page_level_ads: true
 
 # 廣告插入位置

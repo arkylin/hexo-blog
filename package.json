@@ -15,7 +15,7 @@
     "hexo": "^4.2.1",
     "hexo-asset-image": "^1.0.0",
     "hexo-cli": "^3.1.0",
-    "hexo-deployer-aliyun-oss": "^0.0.2",
+    "hexo-deployer-aliyun-oss": "^0.0.3",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-feed": "^2.2.0",
@@ -27,7 +27,7 @@
     "hexo-renderer-pug": "^1.0.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
-    "hexo-translate-title-unchange": "^1.0.11-4",
+    "hexo-translate-title-unchange": "^1.0.11-5",
     "hexo-wordcount": "^6.0.1"
   }
 }
