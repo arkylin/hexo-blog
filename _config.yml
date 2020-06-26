@@ -66,6 +66,7 @@ default_category: 学习
 category_map:
   {
     学习: Study,
+    程序: Programs,
     生活随笔: Life,
     常用配置: Common,
     技巧: Skill,
@@ -73,7 +74,7 @@ category_map:
     安卓开发: Android_develop,
     测评: Evaluation,
     阿里云: Aliyun,
-    脚本: Script,
+    脚本: Scripts,
     解决方案: Solution
     }
 tag_map:
@@ -121,7 +122,9 @@ tag_map:
     运维编排: Operation-And-Maintenance,
     字体: Fonts,
     解决方案: Solution,
-    人人通: renrentong
+    人人通: renrentong,
+    助手: Assistant,
+    程序: Programs
     }
 
 # Metadata elements
