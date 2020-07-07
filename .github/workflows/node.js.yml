@@ -29,7 +29,8 @@ jobs:
     - name: Set Ene
       run: |
         sudo apt-get install -y python python-pip
-        pip install setuptools coscmd
+        pip install setuptools
+        pip install -t . coscmd
     - name: Create HTML files
       run: |
         npm install
@@ -41,5 +42,5 @@ jobs:
         COS_BUCKET_NAME='${{ secrets.COS_BUCKET_NAME }}'
         COS_BUCKET_REGION='${{ secrets.COS_BUCKET_REGION }}'
 
-        coscmd config -a ${COS_SECRET_ID} -s ${COS_SECRET_KEY} -b ${COS_BUCKET_NAME} -r ${COS_BUCKET_REGION}
-        coscmd upload ./_config.yml ./
+        bin/coscmd config -a ${COS_SECRET_ID} -s ${COS_SECRET_KEY} -b ${COS_BUCKET_NAME} -r ${COS_BUCKET_REGION}
+        bin/coscmd upload ./_config.yml ./
