@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>安装Arch-Linux记录 | Arkylin's Blog</title><meta name="description" content="判定为UEFI设备Surface Pro 2017 连接WIFIwifi-menu 设置时间同步timedatectl set-ntp true 设置分区fdisk &#x2F;dev&#x2F;nvme0n1  （以实际情况为主fdisk -l查看） 设置为gpt磁盘格式 EFI分区64M 建议：260–512 MiB（大概只能用到6M多一点不到7M） &#x2F;主分区剩下全部 格式化分区格式化EFI分区 fdisk: C"><meta name="keywords" content="Arch-Linux"><meta name="author" content="凌"><meta name="copyright" content="凌"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/arv/img/favicon.ico"><link rel="canonical" href="https://www.xyz.blue/2020/04/19/install-archlinux-record.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="3x3J5LytTFfKwMFjrRMLAG5xqLq8YjdCxyagEPju8cU"/><meta name="360-site-verification" content="08cacc22aaf560c600c4b3092582456a"/><meta property="og:type" content="article"><meta property="og:title" content="安装Arch-Linux记录"><meta property="og:url" content="https://www.xyz.blue/2020/04/19/install-archlinux-record.html"><meta property="og:site_name" content="Arkylin's Blog"><meta property="og:description" content="判定为UEFI设备Surface Pro 2017 连接WIFIwifi-menu 设置时间同步timedatectl set-ntp true 设置分区fdisk &#x2F;dev&#x2F;nvme0n1  （以实际情况为主fdisk -l查看） 设置为gpt磁盘格式 EFI分区64M 建议：260–512 MiB（大概只能用到6M多一点不到7M） &#x2F;主分区剩下全部 格式化分区格式化EFI分区 fdisk: C"><meta property="og:image" content="https://www.xyz.blue/arv/img/post_23.jpg"><meta property="article:published_time" content="2020-04-19T08:40:06.000Z"><meta property="article:modified_time" content="2020-04-19T09:02:18.000Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="Hexo阿里云OSS上传插件（支持校验MD5）" href="https://www.xyz.blue/2020/05/15/hexo-alibaba-cloud-oss-upload-plugin-supports-check-md5.html"><link rel="next" title="人人通APP的惨痛经历" href="https://www.xyz.blue/2020/04/09/the-painful-experience-of-renrentong-app.html"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f9a10d3a303ae326f03eab0201f37d96";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>(function(){var bp = document.createElement('script');var curProtocol = window.location.protocol.split(':')[0];if (curProtocol === 'https'){bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';}else{bp.src = 'http://push.zhanzhang.baidu.com/push.js';}var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp, s);})();</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: 
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/RSS.xml" title="Arkylin's Blog" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/arv/img/avatar.png" onerror="onerror=null;src='/arv/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">67</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">76</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-object-ungroup"></i><span> 我的项目</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(/arv/img/post_23.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Arkylin's Blog</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-object-ungroup"></i><span> 我的项目</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">安装Arch-Linux记录</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-04-19 16:40:06"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-04-19</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-04-19 17:02:18"><i class="fas fa-history fa-fw"></i> 更新于 2020-04-19</span></time></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">1.9k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 9 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>评论数:</span><a href="/2020/04/19/install-archlinux-record.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2020/04/19/install-archlinux-record.html" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="判定为UEFI设备"><a href="#判定为UEFI设备" class="headerlink" title="判定为UEFI设备"></a>判定为UEFI设备</h2><p><code>Surface Pro 2017</code></p>
+<h2 id="连接WIFI"><a href="#连接WIFI" class="headerlink" title="连接WIFI"></a>连接WIFI</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wifi-menu</span><br></pre></td></tr></table></figure>
+<h2 id="设置时间同步"><a href="#设置时间同步" class="headerlink" title="设置时间同步"></a>设置时间同步</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">timedatectl set-ntp true</span><br></pre></td></tr></table></figure>
+<h2 id="设置分区"><a href="#设置分区" class="headerlink" title="设置分区"></a>设置分区</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fdisk /dev/nvme0n1</span><br></pre></td></tr></table></figure>
+
+<p>（以实际情况为主<code>fdisk -l</code>查看）</p>
+<p>设置为gpt磁盘格式</p>
+<p>EFI分区64M 建议：260–512 MiB（大概只能用到6M多一点不到7M）</p>
+<p><code>/</code>主分区剩下全部</p>
+<p><strong>格式化分区</strong><br>格式化EFI分区</p>
+<p>fdisk: Create a partition with partition type EFI System.<br>见WIKI：<a href="https://wiki.archlinux.org/index.php/EFI_system_partition" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/EFI_system_partition</a></p>
+<p>格式化主分区，这里使用ext4格式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkfs.ext4 /dev/nvme0n1p2</span><br></pre></td></tr></table></figure>
+
+<p>SWAP最后再用文件设置，可见我的另一篇博客</p>
+<p>其实分区还是文件效果其实差不多的</p>
+<p>而且文件还可以随时更改大小不像分区那样麻烦还得扩大缩小，搞不好数据都没了还得重装</p>
+<p><strong>挂载分区</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mount /dev/nvme0n1p2 /mnt</span><br></pre></td></tr></table></figure>
+<p>（挂载目录随意）</p>
+<p>你说为啥p2先挂载，因为你的目录得要在<code>/</code>里面</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mount /dev/nvme0n1p1 /mnt/efi</span><br></pre></td></tr></table></figure>
+<p>(目录随意大小写随意，最后只需在Grub里面设置即可)</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>更改镜像源地址</strong></p>
+<p>默认的源地址为源地址列表的第一个，而连接超时则再试第二个，所以会很慢，而且内置的中文源在好后面…</p>
+<p>所以得换源<br>首先<del>安装</del><code>nano</code>，不过好像有内置你想用<code>vi</code>或者<code>vim</code>也可以不过我个人感觉<code>nano</code>好用</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nano /etc/pacman.d/mirrorlist</span><br></pre></td></tr></table></figure>
+
+<p>在第几行（[ ]标志的后面）那里加入</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[archlinuxcn]</span><br><span class="line">Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[archlinuxcn]</span><br><span class="line">Server = http://mirrors.aliyun.com/archlinuxcn/$arch</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Server = http://mirrors.zju.edu.cn/archlinux/$repo/os/$arch</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[archlinuxcn]</span><br><span class="line">Server = http://mirrors.zju.edu.cn/archlinuxcn/$arch</span><br></pre></td></tr></table></figure>
+
+<p><code>Ctrl+O</code>保存</p>
+<p><code>Ctrl+X</code>退出</p>
+<p><strong>安装基本包</strong></p>
+<p>注：安装时出现报错</p>
+<p><strong><em>1</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">perl: warning: Setting locale failed.</span><br><span class="line"></span><br><span class="line">perl: warning: Please check that your locale settings:</span><br><span class="line">LANGUAGE &#x3D; (unset),</span><br><span class="line">LC_ALL &#x3D; (unset),</span><br><span class="line">LANG &#x3D; &quot;en_US.UTF-8&quot;</span><br><span class="line">    are supported and installed on your system.</span><br><span class="line">perl: warning: Falling back to the standard locale (&quot;C&quot;).</span><br><span class="line">locale: Cannot set LC_CTYPE to default locale: No such file or directory</span><br><span class="line">locale: Cannot set LC_MESSAGES to default locale: No such file or directory</span><br><span class="line">locale: Cannot set LC_ALL to default locale: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>解决方案1：</em></strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nano /root/.bashrc</span><br></pre></td></tr></table></figure>
+<p>在最底部添加上一句</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export LC_ALL=C</span><br></pre></td></tr></table></figure>
+<p>或者直接运行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo "export LC_ALL=C" &gt;&gt; /root/.bashrc</span><br></pre></td></tr></table></figure>
+<p>然后执行一下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source /root/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>2</em></strong><br>When you install/update linux kernel you can see these missing firmware warnings. These drivers are not necessary to run your system, at some point they where excluded from kernel. If these errors disturb you then you can get them from user repositories. The wd719x is a driver for “Western Digital WD7193, WD7197 and WD7296 SCSI cards” and aic94xx is the driver for “Adaptec SAS 44300, 48300, 58300 Sequencer”.</p>
+<p><strong><em>解决方案2：</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Download the missing firmware using your favourite AUR package manager.</span><br><span class="line">yay -S aic94xx-firmware wd719x-firmware</span><br><span class="line"> </span><br><span class="line"># When you run kernel install again, you should not see the error any more.</span><br><span class="line">yay -</span><br><span class="line">S linux</span><br></pre></td></tr></table></figure>
+<p>安装上面这些你添加Arch Linux中文源也可以直接用<code>pacman</code>安装<br><strong><em>3</em></strong></p>
+<p><em>解决方案<strong>2</strong>中的yay安装问题</em></p>
+<p>由于<code>yay</code>为第三方包管理器，所以在安装环境中并没有内置所以得自行安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;aur.archlinux.org&#x2F;yay.git</span><br><span class="line">cd yay</span><br><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
+
+<p>由于<code>yay</code>不支持在<code>root</code>环境在运行，你还得新建一个账户不过这个好像得在<code>arch-chroot</code>之后进行（捂脸哭/(ㄒoㄒ)/~~）</p>
+<p>说明文件（见下）两种都可以，但是yay就是不支持在<code>root</code>环境在运行，而且你用<code>pacstrap</code>也不行啊，我突然想到</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">To install other packages or package groups, append the names to the pacstrap command above (space separated) or use pacman while chrooted into the new system. For comparison, packages available in the live system can be found in packages.x86_64.</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pacstrap -i /mnt base base-devel linux linux-firmware</span><br></pre></td></tr></table></figure>
+<p>（<code>-i</code>给你有选择的权利，不过还是默认的好，如有特俗需求可以改）</p>
+<h2 id="配置系统"><a href="#配置系统" class="headerlink" title="配置系统"></a>配置系统</h2><p><strong><code>Fstab</code>启动配置文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>Chroot</code></strong></p>
+<p><strong>切换<code>root</code>环境目录</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">arch-chroot /mnt</span><br></pre></td></tr></table></figure>
+
+<p><strong>设置时区</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ln -sf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime</span><br></pre></td></tr></table></figure>
+
+<p><strong>同步系统时钟到硬件</strong></p>
+<p>这对某些程序来说很好</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hwclock --systohc</span><br></pre></td></tr></table></figure>
+
+<p><strong>更改镜像源地址</strong></p>
+<p><em>见上</em></p>
+<p><strong>配置语言</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nano /etc/locale.gen</span><br></pre></td></tr></table></figure>
+
+<p>在文件中找到zh_CN.UTF-8 UTF-8 zh_HK.UTF-8 UTF-8 zh_TW.UTF-8 UTF-8 en_US.UTF-8 UTF-8这四行，去掉行首的#号，保存并退出。</p>
+<p>执行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">locale-gen</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nano /etc/locale.conf</span><br></pre></td></tr></table></figure>
+
+<p>加入</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">LANG=en_US.UTF-8</span><br></pre></td></tr></table></figure>
+
+<p>如果用中文在某些tty界面会乱码（可以从deepin中学习一下这种配置）</p>
+<p><strong>设置主机名</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nano /etc/hostname</span><br></pre></td></tr></table></figure>
+
+<p><strong>设置<code>hosts</code></strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nano /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">127.0.0.1   localhost.localdomain	localhost</span><br><span class="line">::1         localhost.localdomain	localhost</span><br><span class="line">127.0.1.1   myhostname.localdomain myhostname</span><br></pre></td></tr></table></figure>
+
+<p>If the system has a permanent IP address, it should be used instead of 127.0.1.1.</p>
+<p><strong>Initramfs</strong></p>
+<p>Creating a new initramfs is usually not required, because mkinitcpio was run on installation of the kernel package with pacstrap.</p>
+<p>For LVM, system encryption or RAID, modify mkinitcpio.conf(5) and recreate the initramfs image:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkinitcpio -P</span><br></pre></td></tr></table></figure>
+
+<p>好像在安装时会自动执行然后这里就应该会复现<code>pacstrap</code>的问题<em>3</em>,请解决</p>
+<p><strong>设置<code>root</code>密码</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装你熟悉的常用软件</strong></p>
+<p>KDE:<a href="https://wiki.archlinux.org/index.php/KDE" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/KDE</a></p>
+<p>DDE:<a href="https://wiki.archlinux.org/index.php/Deepin_Desktop_Environment" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/Deepin_Desktop_Environment</a></p>
+<p>UEFI systems<br>Note:<br>It is recommended to read and understand the Unified Extensible Firmware Interface, Partitioning#GUID Partition Table and Arch boot process#Under UEFI pages.<br>When installing to use UEFI it is important to boot the installation media in UEFI mode, otherwise efibootmgr will not be able to add the GRUB UEFI boot entry. Installing to the fallback boot path will still work even in BIOS mode since it does not touch the NVRAM.<br>To boot from a disk using UEFI, an EFI system partition is required. Follow EFI system partition#Check for an existing partition to find out if you have one already, otherwise you need to create it.<br>Installation<br>Note:<br>UEFI firmwares are not implemented consistently across manufacturers. The procedure described below is intended to work on a wide range of UEFI systems but those experiencing problems despite applying this method are encouraged to share detailed information, and if possible the workarounds found, for their hardware-specific case. A GRUB/EFI examples article has been provided for such cases.<br>The section assumes you are installing GRUB for x86_64 systems. For IA32 (32-bit) UEFI systems (not to be confused with 32-bit CPUs), replace x86_64-efi with i386-efi where appropriate.<br>First, install the packages grub and efibootmgr: GRUB is the bootloader while efibootmgr is used by the GRUB installation script to write boot entries to NVRAM.</p>
+<p>Then follow the below steps to install GRUB:</p>
+<p>Mount the EFI system partition and in the remainder of this section, substitute esp with its mount point.<br>Choose a bootloader identifier, here named GRUB. A directory of that name will be created in esp/EFI/ to store the EFI binary and this is the name that will appear in the UEFI boot menu to identify the GRUB boot entry.<br>Execute the following command to install the GRUB EFI application grubx64.efi to esp/EFI/GRUB/ and install its modules to /boot/grub/x86_64-efi/.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB</span><br></pre></td></tr></table></figure>
+
+<p>After the above install completed the main GRUB directory is located at /boot/grub/. Note that grub-install also tries to create an entry in the firmware boot manager, named GRUB in the above example.</p>
+<p>Remember to #Generate the main configuration file after finalizing the configuration.</p>
+<p>Tip: If you use the option –removable then GRUB will be installed to esp/EFI/BOOT/BOOTX64.EFI (or esp/EFI/BOOT/BOOTIA32.EFI for the i386-efi target) and you will have the additional ability of being able to boot from the drive in case EFI variables are reset or you move the drive to another computer. Usually you can do this by selecting the drive itself similar to how you would using BIOS. If dual booting with Windows, be aware Windows usually places an EFI executable there, but its only purpose is to recreate the UEFI boot entry for Windows.<br>Note:<br>–efi-directory and –bootloader-id are specific to GRUB UEFI, –efi-directory replaces –root-directory which is deprecated.<br>You might note the absence of a device_path option (e.g.: /dev/sda) in the grub-install command. In fact any device_path provided will be ignored by the GRUB UEFI install script. Indeed, UEFI bootloaders do not use a MBR bootcode or partition boot sector at all.<br>Make sure to run the grub-install command from the system in which GRUB will be installed as the boot looader. That means if you are booting from the live installation environment, you need to be inside the chroot when running grub-install. If for some reason it is necessary to run grub-install from outside of the installed system, append the –boot-directory= option with the path to the mounted /boot directory, e.g –boot-directory=/mnt/boot.<br>See UEFI troubleshooting in case of problems. Additionally see GRUB/Tips and tricks#UEFI further reading.</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">凌</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.xyz.blue/2020/04/19/install-archlinux-record.html">https://www.xyz.blue/2020/04/19/install-archlinux-record.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.xyz.blue" target="_blank">Arkylin's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Arch-Linux/">Arch-Linux</a></div><div class="post_share"><div class="social-share" data-image="/2020/07/06/Alibaba-Cloud-Cloud-function-configuration-Baidu-automatic-push/baidu_push.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/15/hexo-alibaba-cloud-oss-upload-plugin-supports-check-md5.html"><img class="prev-cover" data-src="/2020/05/15/hexo-alibaba-cloud-oss-upload-plugin-supports-check-md5/deployer.png" onerror="onerror=null;src='/arv/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hexo阿里云OSS上传插件（支持校验MD5）</div></div></a></div><div class="next-post pull-right"><a href="/2020/04/09/the-painful-experience-of-renrentong-app.html"><img class="next-cover" data-src="/2020/04/09/the-painful-experience-of-renrentong-app/renrentong.png" onerror="onerror=null;src='/arv/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">人人通APP的惨痛经历</div></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: 'va3F4N3qz4tHNlHuW5wwGY7j-MdYXbMMI',
+  appKey: '7uByaK8RDwKnPcnSCvJG5uQA',
+  placeholder: '留下你的想法吧！ PS:网址可以不填',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: true,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: false,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 凌</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" title="缩小字体"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fas fa-comments"></i></a><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script></body></html>
