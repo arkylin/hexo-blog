@@ -104,7 +104,7 @@ dist
 .tern-port
 
 #Custom
-themes/
+themes/Backup
 public/
 package-lock.json
 db.json
