@@ -25,7 +25,7 @@ copyright:
 mathjax:
 katex:
 hide:
-top: true
+top:
 ---
 做了一个python的博客助手可以方便写文章
 

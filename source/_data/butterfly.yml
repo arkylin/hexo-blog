@@ -7,11 +7,12 @@
 #   name || link || icon
 
 menu:
-  主页: / || fas fa-home
+  #主页: / || fas fa-home
+  我的项目: /projects/ || fas fa-object-ungroup
   归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  友链: /link/ || fas fa-link
+  友链: /links/ || fas fa-link
   关于我: /about/ || fas fa-heart
   #List||fas fa-list:
   #  - 音乐 || /music/ || fas fa-music
@@ -55,6 +56,7 @@ social:
   fab fa-github: https://github.com/arkylin || Github
   fas fa-envelope: mailto:x@xyz.blue || Email
   fas fa-rss: /RSS.xml || RSS
+  fas fa-object-ungroup: /projects/ || 我的项目
 
 # search (搜索)
 # --------------------------------------
@@ -529,7 +531,7 @@ tag_ui: # 留空或 index
 # The formal of color: '#49B202'
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
 # White color will be shown as default
-background:
+background: url(https://www.xyz.blue/arv/img/index.jpg)
 
 # Show the footer background image (same as top_img)
 footer_bg: false

@@ -18,7 +18,7 @@ copyright:
 mathjax:
 katex:
 hide:
-top: true
+top:
 ---
 # Newest_lamp
 
