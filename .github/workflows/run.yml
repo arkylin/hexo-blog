@@ -58,14 +58,14 @@ jobs:
     - name: 配置Coding
       run: |
         CODING_PRIVATE_KEY='${{ secrets.CODING_PRIVATE_KEY }}'
-        if [ ! -e "~/.ssh" ]; then
-          mkdir ~/.ssh
+        if [ ! -e "/home/runner/.ssh" ]; then
+          mkdir /home/runner/.ssh
         else
-          ls ~/.ssh
-          sudo rm -rf ~/.ssh
-          mkdir ~/.ssh
+          sudo rm -rf /home/runner/.ssh
+          mkdir /home/runner/.ssh
         fi
-        echo ${CODING_PRIVATE_KEY} > ~/.ssh/id_rsa
+        echo ${CODING_PRIVATE_KEY} > /home/runner/.ssh/id_rsa
+        sudo chmod -R 600 /home/runner/.ssh/id_rsa
         ssh -o "StrictHostKeyChecking no" -T git@e.coding.net
     - name: 部署文件到Coding
       run: |
