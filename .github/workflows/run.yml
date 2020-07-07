@@ -49,8 +49,8 @@ jobs:
         coscmd upload -rs ./public/ ./
     - name: 删除密钥文件
       run: |
-        if [ -e "/home/runner/.cos.conf" ]; then
-          sudo rm -rf /home/runner/.cos.conf
+        if [ -e "~/.cos.conf" ]; then
+          sudo rm -rf ~/.cos.conf
           echo "文件已删除"
         else
           echo "文件已消失"
@@ -58,14 +58,14 @@ jobs:
     - name: 配置Coding
       run: |
         CODING_PRIVATE_KEY='${{ secrets.CODING_PRIVATE_KEY }}'
-        if [ ! -e "/home/runner/.ssh" ]; then
-          mkdir /home/runner/.ssh
+        if [ ! -e "~/.ssh" ]; then
+          mkdir ~/.ssh
         else
-          sudo rm -rf /home/runner/.ssh
-          mkdir /home/runner/.ssh
+          sudo rm -rf ~/.ssh
+          mkdir ~/.ssh
         fi
-        echo ${CODING_PRIVATE_KEY} > /home/runner/.ssh/id_rsa
-        sudo chmod -R 600 /home/runner/.ssh/id_rsa
+        echo ${CODING_PRIVATE_KEY} | sed 's/ /\n/g' > ~/.ssh/id_rsa
+        sudo chmod -R 600 ~/.ssh/id_rsa
         ssh -o "StrictHostKeyChecking no" -T git@e.coding.net
     - name: 部署文件到Coding
       run: |
