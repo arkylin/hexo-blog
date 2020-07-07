@@ -45,6 +45,11 @@ jobs:
     - name: 上传文件
       run: |
         coscmd upload -rs ./public ./
-    - name: Delete Files
+    - name: 删除密钥文件
       run: |
-        sudo rm -rf /home/runner/.cos.conf
+        if [ -e "/home/runner/.cos.conf" ]; then
+          sudo rm -rf /home/runner/.cos.conf
+          echo "文件已删除"
+        else
+          echo "文件已消失"
+        fi
