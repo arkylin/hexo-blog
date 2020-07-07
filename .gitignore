@@ -109,5 +109,5 @@ public/
 package-lock.json
 db.json
 cloud/
-.deploy_git/
 desktop.ini
+.deploy_git

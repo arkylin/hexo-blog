@@ -31,9 +31,11 @@ jobs:
         sudo apt-get install -y python3 python3-pip
         sudo pip3 install setuptools
         sudo pip3 install coscmd
-    - name: 安装扩展并生成静态页面
+    - name: 安装扩展
       run: |
         npm install
+    - name: 生成静态页面
+      run: |
         node_modules/.bin/hexo g
     - name: 设置储存桶
       run: |
@@ -49,6 +51,28 @@ jobs:
       run: |
         if [ -e "/home/runner/.cos.conf" ]; then
           sudo rm -rf /home/runner/.cos.conf
+          echo "文件已删除"
+        else
+          echo "文件已消失"
+        fi
+    - name: 配置Coding
+      run: |
+        CODING_PRIVATE_KEY='${{ secrets.CODING_PRIVATE_KEY }}'
+        if [ ! -e "~/.ssh" ]; then
+          mkdir ~/.ssh
+        else
+          ls ~/.ssh
+          sudo rm -rf ~/.ssh
+          mkdir ~/.ssh
+        echo ${CODING_PRIVATE_KEY} > ~/.ssh/id_rsa
+        ssh -o "StrictHostKeyChecking no" -T git@e.coding.net
+    - name: 部署文件到Coding
+      run: |
+        node_modules/.bin/hexo d
+    - name: 删除Coding配置文件
+      run: |
+        if [ -e "~/.ssh" ]; then
+          sudo rm -rf ~/.ssh
           echo "文件已删除"
         else
           echo "文件已消失"
