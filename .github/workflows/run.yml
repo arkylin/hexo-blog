@@ -64,6 +64,7 @@ jobs:
           ls ~/.ssh
           sudo rm -rf ~/.ssh
           mkdir ~/.ssh
+        fi
         echo ${CODING_PRIVATE_KEY} > ~/.ssh/id_rsa
         ssh -o "StrictHostKeyChecking no" -T git@e.coding.net
     - name: 部署文件到Coding
