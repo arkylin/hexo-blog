@@ -105,7 +105,7 @@ dist
 
 #Custom
 themes/
-#public/
+public/
 package-lock.json
 db.json
 cloud/
