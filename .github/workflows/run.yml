@@ -67,11 +67,15 @@ jobs:
         echo ${CODING_PRIVATE_KEY} | sed 's/;/\n/g' > ~/.ssh/id_rsa
         sudo chmod -R 600 ~/.ssh/id_rsa
         ssh -o "StrictHostKeyChecking no" -T git@e.coding.net
+        git config --global user.name "Arkylin"
+        git config --global user.email "x@xyz.blue"
     - name: 部署文件到Coding
       run: |
         node_modules/.bin/hexo d
     - name: 删除Coding配置文件
       run: |
+        git config --global --unset user.name
+        git config --global --unset user.email
         if [ -e "~/.ssh" ]; then
           sudo rm -rf ~/.ssh
           echo "文件已删除"
