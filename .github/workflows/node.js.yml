@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: 12.x
 
     steps:
     - uses: actions/checkout@v2
@@ -24,4 +24,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - run: |
+      apt-get install -y python-pip
+      pip install setuptools coscmd
+      npm install
+      node_modules/.bin/hexo g
+
+      COS_SECRET_ID='${{ secrets.COS_SECRET_ID }}'
+      COS_SECRET_KEY='${{ secrets.COS_SECRET_KEY }}'
+      COS_BUCKET_NAME='${{ secrets.COS_BUCKET_NAME }}'
+      COS_BUCKET_REGION='${{ secrets.COS_BUCKET_REGION }}'
+
+      coscmd config -a ${COS_SECRET_ID} -s ${COS_SECRET_KEY} -b ${COS_BUCKET_NAME} -r ${COS_BUCKET_REGION}
+      coscmd upload ./_config.yml ./
