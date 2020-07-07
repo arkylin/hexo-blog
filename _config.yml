@@ -168,7 +168,7 @@ theme: Butterfly
 deploy:
   type: git
   repository: 
-    coding: https://e.coding.net/iloveyou/blog/blog.git
+    coding: git@e.coding.net:iloveyou/blog/blog.git
   branch: master
 
 #Title Translate
