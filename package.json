@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "4.2.1"
+    "version": "5.0.0"
   },
   "scripts": {
     "build": "hexo generate",
@@ -12,9 +12,9 @@
     "server": "hexo server"
   },
   "dependencies": {
-    "hexo": "^4.2.1",
+    "hexo": "^5.0.0",
     "hexo-asset-image": "^1.0.0",
-    "hexo-cli": "^3.1.0",
+    "hexo-cli": "^4.1.0",
     "hexo-deployer-aliyun-oss": "^0.0.4",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
@@ -24,7 +24,7 @@
     "hexo-generator-search": "^2.4.0",
     "hexo-generator-sitemap": "^2.0.0",
     "hexo-generator-tag": "^1.0.0",
-    "hexo-renderer-marked": "^2.0.0",
+    "hexo-renderer-marked": "^3.0.0",
     "hexo-renderer-pug": "^1.0.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",

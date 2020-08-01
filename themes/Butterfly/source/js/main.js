@@ -356,7 +356,7 @@ $(function () {
  * PhotoFigcaption
  */
   function addPhotoFigcaption () {
-    var images = $('#article-container img')
+    const images = $('#article-container img').not('.justified-gallery img')
     images.each(function (i, o) {
       var $this = $(o)
       if ($this.attr('alt')) {
@@ -760,20 +760,19 @@ $(function () {
     })
   }
 
-  var $tab = $('#article-container .tabs')
-  $tab.find('.tab a').on('click', function (e) {
-    e.preventDefault()
-    var $this = $(this)
-    var $tabItem = $this.parent()
+  const $tab = $('#article-container .tabs')
+  $tab.find('.tab button').on('click', function (e) {
+    const $this = $(this)
+    const $tabItem = $this.parent()
 
     if (!$tabItem.hasClass('active')) {
-      var $tacbContent = $this.parents('.nav-tabs').next()
+      const $tacbContent = $this.parents('.nav-tabs').next()
       $tabItem.siblings('.active').removeClass('active')
       $tabItem.addClass('active')
-      var tabId = $this.attr('href')
+      const tabId = $this.attr('data-href')
       $tacbContent.find('> .tab-item-content').removeClass('active')
       $tacbContent.find(`> ${tabId}`).addClass('active')
-      var $isTabJustifiedGallery = $tacbContent.find(tabId).find('.justified-gallery')
+      const $isTabJustifiedGallery = $tacbContent.find(tabId).find('.justified-gallery')
       if (isJustifiedGallery && $isTabJustifiedGallery.length > 0) {
         initJustifiedGallery($isTabJustifiedGallery)
       }

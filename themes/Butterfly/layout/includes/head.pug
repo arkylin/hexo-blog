@@ -84,11 +84,6 @@ include ./head/comment.pug
 //- analytics
 !=partial('includes/head/analytics', {}, {cache:theme.fragment_cache})
 
-//- 自定义
-//- <script type="text/javascript" defer="" src="https://sg.aliyun.api.xyz.blue/baidu-push"></script>
-
-<script>(function(){var bp = document.createElement('script');var curProtocol = window.location.protocol.split(':')[0];if (curProtocol === 'https'){bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';}else{bp.src = 'http://push.zhanzhang.baidu.com/push.js';}var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp, s);})();</script>
-
 //- font
 if theme.blog_title_font.font_link
   link(rel='stylesheet' href=url_for(theme.blog_title_font.font_link))
