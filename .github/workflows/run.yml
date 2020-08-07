@@ -41,10 +41,10 @@ jobs:
         node_modules/.bin/hexo g
     - name: 设置储存桶
       run: |
-        bash ./ossutil64 config -e oss-cn-hongkong.aliyuncs.com -i LTAI4FwbRdqkMc31MZhTjt1e -k d97WDrK23jskRR1GTgJdfW7D5AkXCd -L CH
+        ./ossutil64 config -e oss-cn-hongkong.aliyuncs.com -i LTAI4FwbRdqkMc31MZhTjt1e -k d97WDrK23jskRR1GTgJdfW7D5AkXCd -L CH
     - name: 上传文件
       run: |
-        cp -r -u public oss://kylin-blog/
+      ./ossutil64 cp -r -u public oss://kylin-blog/
     - name: 删除密钥文件
       run: |
         if [ -e "~/.ossutilconfig" ]; then
