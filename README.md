@@ -1,1 +1,1 @@
-This is Arkylin's Blog
+This is Arkylin's Blog.
