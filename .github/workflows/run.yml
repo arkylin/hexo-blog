@@ -28,9 +28,9 @@ jobs:
 
     - name: 设置初始环境
       run: |
-        sudo apt-get install -y python3 python3-pip
-        sudo pip3 install setuptools
-        sudo pip3 install coscmd
+#        sudo apt-get install -y python3 python3-pip
+#        sudo pip3 install setuptools
+#        sudo pip3 install coscmd
         sudo wget http://gosspublic.alicdn.com/ossutil/1.6.18/ossutil64
         sudo chmod 755 ossutil64
     - name: 安装扩展
