@@ -41,7 +41,7 @@ jobs:
         node_modules/.bin/hexo g
     - name: 设置储存桶
       run: |
-        ./ossutil64 config -e oss-cn-hongkong.aliyuncs.com -i LTAI4FwbRdqkMc31MZhTjt1e -k d97WDrK23jskRR1GTgJdfW7D5AkXCd  -L CH
+        bash ./ossutil64 config -e oss-cn-hongkong.aliyuncs.com -i LTAI4FwbRdqkMc31MZhTjt1e -k d97WDrK23jskRR1GTgJdfW7D5AkXCd -L CH
     - name: 上传文件
       run: |
         cp -r -u public oss://kylin-blog/
