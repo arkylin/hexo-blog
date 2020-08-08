@@ -47,6 +47,7 @@ jobs:
         ./ossutil64 config -e ${OSS_BUCKET_REGION_FINAL} -i ${OSS_ACCESSKEY_ID} -k ${OSS_ACCESSKEY_SECRET} -L CH
     - name: 上传文件
       run: |
+        echo ${OSS_BUCKET_NAME_FINAL}
         ./ossutil64 cp -r -u public ${OSS_BUCKET_NAME_FINAL}
     - name: 删除密钥文件
       run: |
