@@ -41,14 +41,11 @@ jobs:
         OSS_ACCESSKEY_ID='${{ secrets.OSS_ACCESSKEY_ID }}'
         OSS_ACCESSKEY_SECRET='${{ secrets.OSS_ACCESSKEY_SECRET }}'
         OSS_BUCKET_NAME='${{ secrets.OSS_BUCKET_NAME }}'
-        OSS_BUCKET_NAME_FINAL='oss://'${OSS_BUCKET_NAME}'/'
         OSS_BUCKET_REGION='${{ secrets.OSS_BUCKET_REGION }}'
-        OSS_BUCKET_REGION_FINAL=${OSS_BUCKET_REGION}'.aliyuncs.com'
-        ./ossutil64 config -e ${OSS_BUCKET_REGION_FINAL} -i ${OSS_ACCESSKEY_ID} -k ${OSS_ACCESSKEY_SECRET} -L CH
+        ./ossutil64 config -e ${OSS_BUCKET_REGION}.aliyuncs.com -i ${OSS_ACCESSKEY_ID} -k ${OSS_ACCESSKEY_SECRET} -L CH
     - name: 上传文件
       run: |
-        echo ${OSS_BUCKET_NAME_FINAL}
-        ./ossutil64 cp -r -u public ${OSS_BUCKET_NAME_FINAL}
+        ./ossutil64 cp -r -u public oss://${OSS_BUCKET_NAME}
     - name: 删除密钥文件
       run: |
         if [ -e "~/.ossutilconfig" ]; then
