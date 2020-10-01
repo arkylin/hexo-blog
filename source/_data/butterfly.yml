@@ -18,10 +18,13 @@ menu:
   #  - 音乐 || /music/ || fas fa-music
   #  - 影视 || /movies/ || fas fa-film
 
+# Hide the child menu items in mobile sidebar
+hide_sidebar_menu_child: false
+
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: mac light # default / darker / pale night / light / ocean / mac / mac light / false
+highlight_theme: mac light #  darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
@@ -94,22 +97,32 @@ avatar:
   img: /arv/img/avatar.png
   effect: false
 
-# the banner image of home page
+# The banner image of home page
 index_img:
 
-# if the banner of page not setting, it will show the top_img
+# If the banner of page not setting, it will show the top_img
 default_top_img: /arv/img/index.jpg
 
-# the banner image of archive page
+# The banner image of archive page
 archive_img:
 
-# the banner image of tag page
+# If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
 tag_img:
 
-# the banner image of category page
+# The banner image of tag page
+# format: 
+#  - tag name: xxxxx
+tag_per_img:
+
+# If the banner of category page not setting, it will show the top_img
 # note: category page, not categories page (子分類頁面的 top_img)
 category_img:
+
+# The banner image of category page
+# format: 
+#  - category name: xxxxx
+category_per_img:
 
 # If you are using hexo-douban, you can configure it (如果你有使用 hexo-douban,可配置這個)
 # douban:
@@ -195,11 +208,13 @@ error_404:
 post_meta:
   page: # Home Page
     date_type: both # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
+    date_format: date # date/relative 顯示日期還是相對日期
     categories: true # true or false 主頁是否顯示分類
     tags: true # true or false 主頁是否顯示標籤
     label: true # true or false 顯示描述性文字
   post:
     date_type: both # created or updated or both 文章頁日期是創建日或者更新日或都顯示
+    date_format: date # date/relative 顯示日期還是相對日期
     categories: true # true or false 文章頁是否顯示分類
     tags: true # true or false 文章頁是否顯示標籤
     label: true # true or false 顯示描述性文字
@@ -215,6 +230,7 @@ wordcount:
 # 1: description
 # 2: both (if the description exists, it will show description, or show the auto_excerpt)
 # 3: auto_excerpt (default)
+# false: do not show the article introduction
 index_post_content:
   method: 3
   length: 500 # if you set method to 2 or 3, the length need to config
@@ -286,14 +302,7 @@ sharejs:
 # https://www.addtoany.com/
 addtoany:
   enable: false
-  item:
-    - facebook
-    - twitter
-    - wechat
-    - sina_weibo
-    - facebook_messenger
-    - email
-    - copy_link
+  item: facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link
 
 # Comments System
 # --------------------------------------
@@ -302,12 +311,11 @@ comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
   use:
-    - Valine
-  # - Valine
+   - Valine
   # - Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
-  # If you set it to false, the comment count will be invalid
+  # If you set it to true, the comment count will be invalid
   lazyload: true
   count: true # Display comment count in top_img
 
@@ -429,7 +437,7 @@ footer:
   owner:
     enable: true
     since: 2019
-  custom_text: 
+  custom_text:
   copyright: true # Copyright of theme and framework
   ICP: # Chinese ICP License
     enable: false
@@ -441,13 +449,20 @@ footer:
 # --------------------------------------
 
 # Baidu Analytics
+# https://tongji.baidu.com/web/welcome/login
 baidu_analytics: f9a10d3a303ae326f03eab0201f37d96
 
 # Google Analytics
+# https://analytics.google.com/analytics/web/
 google_analytics:
 
 # Tencent Analytics ID
+# https://mta.qq.com
 tencent_analytics:
+
+# CNZZ Analytics
+# https://www.umeng.com/
+cnzz_analytics:
 
 # Advertisement
 # --------------------------------------
@@ -525,16 +540,17 @@ tag_ui: # 留空或 index
 
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
-# The formal of color: '#49B202'
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-# White color will be shown as default
 background: url(https://www.xyz.blue/arv/img/index.jpg)
 
-# Show the footer background image (same as top_img)
+# Footer Background
 footer_bg: false
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
+
+# Enter transitions (開啓網頁進入效果)
+enter_transitions: true
 
 # Background effects (背景特效)
 # --------------------------------------
@@ -549,8 +565,8 @@ canvas_ribbon:
   click_to_change: false
   mobile: false
 
-# Dynamic ribbon (動態彩帶)
-canvas_ribbon_piao:
+# Fluttering Ribbon (動態彩帶)
+canvas_fluttering_ribbon:
   enable: false
   mobile: false
 
@@ -569,24 +585,29 @@ canvas_nest:
 activate_power_mode:
   enable: true
   colorful: true # open particle animation (冒光特效)
-  shake: true #  open shake (抖動特效)
+  shake: false #  open shake (抖動特效)
+  mobile: true
 
 # Mouse click effects: fireworks (鼠標點擊效果: 煙火特效)
 fireworks:
-  enable: false
+  enable: true
   zIndex: 9999 # -1 or 9999
+  mobile: true
 
 # Mouse click effects: Heart symbol (鼠標點擊效果: 愛心)
-click_heart: false
+click_heart:
+  enable: false
+  mobile: false
 
 # Mouse click effects: words (鼠標點擊效果: 文字)
 ClickShowText:
   enable: false
   text:
-    - I
-    - LOVE
-    - YOU
+    # - I
+    # - LOVE
+    # - YOU
   fontSize: 15px
+  mobile: false
 
 # Default display mode (網站默認的顯示模式)
 # light (default) / dark
@@ -602,14 +623,16 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)
 font:
+  global-font-size:
+  code-font-size:
   font-family:
-  code-font:
+  code-font-family:
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字
-blog_title_font:
-  font_link: https://fonts.googleapis.com/css?family=Titillium+Web&display=swap
-  font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif
+# blog_title_font:
+  # font_link: https://fonts.googleapis.com/css?family=Titillium+Web&display=swap
+  # font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif
 
 # The setting of divider icon (水平分隔線圖標設置)
 hr_icon:
@@ -657,7 +680,7 @@ aside:
       link: https://github.com/arkylin
   card_announcement:
     enable: true
-    content: 网站迁移完成。。脚本在文章里面
+    content: This is my Blog.
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
@@ -676,7 +699,10 @@ aside:
     format: MMMM YYYY # eg: YYYY年MM月
     order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
     limit: 8 # if set 0 will show all
-  card_webinfo: true
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
 
 # busuanzi count for PV / UV in site
 # 訪問人數
@@ -690,6 +716,25 @@ busuanzi:
 runtimeshow:
   enable: true
   publish_date: 2019/8/1 00:00:00
+
+# Aside widget - Newest Comments
+newest_comments:
+  enable: false
+  limit: 6
+  avatar: true
+  leancloud:
+    enable: false
+    appId: # leancloud application app id
+    appKey: # leancloud application app key
+    serverURL: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
+    default_avatar: # mp/identicon/monsterid/wavatar/retro/robohash/blank
+  github_issues:
+    enable: false
+    repo:
+  disqus:
+    enable: false
+    forum:
+    api_key:
 
 # Bottom right button (右下角按鈕)
 # --------------------------------------
@@ -761,10 +806,21 @@ note:
 # other
 # --------------------------------------
 
+# Artitalk
+# see https://artitalk.js.org/
+artitalk:
+  appId:
+  appKey:
+  option:
+
 # Pjax [Beta]
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
-pjax: false
+pjax:
+  enable: false
+  exclude:
+    # - xxxx
+    # - xxxx
 
 # Inject the css and script (aplayer/meting)
 aplayerInject:
@@ -806,7 +862,6 @@ lazyload:
 # pwa:
 #   enable: false
 #   manifest: /image/pwa/manifest.json
-#   theme_color: "#fff"
 #   apple_touch_icon: /image/pwa/apple-touch-icon.png
 #   favicon_32_32: /image/pwa/32.png
 #   favicon_16_16: /image/pwa/16.png
@@ -817,7 +872,7 @@ disable_baidu_transformation: true
 
 # Open graph meta tags
 # https://developers.facebook.com/docs/sharing/webmasters/
-Open_Graph_meta: true
+Open_Graph_meta: false
 
 # Caches the contents in a fragment, speed up the generation (開啟hexo自帶的緩存,加快生成速度)
 fragment_cache: true
@@ -874,9 +929,9 @@ CDN:
   busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
   # background effect
-  canvas_ribbon: /js/third-party/canvas-ribbon.js
-  canvas_ribbon_piao: /js/third-party/piao.js
-  canvas_nest: /js/third-party/canvas-nest.js
+  canvas_ribbon: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js
+  canvas_fluttering_ribbon: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js
+  canvas_nest: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js
 
   lazyload: https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js
   instantpage: https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js
@@ -893,11 +948,10 @@ CDN:
   snackbar: https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js
 
   # effect
-  anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
-  activate_power_mode: /js/third-party/activate-power-mode.js
-  fireworks: /js/third-party/fireworks.js
-  click_heart: /js/third-party/click_heart.js
-  ClickShowText: /js/third-party/ClickShowText.js
+  activate_power_mode: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js
+  fireworks: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js
+  click_heart: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js
+  ClickShowText: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js
 
   # fontawesome
   fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
@@ -913,3 +967,10 @@ CDN:
   aplayer_css: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css
   aplayer_js: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js
   meting_js: https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js
+
+  # Prism.js
+  prismjs_js: https://cdn.jsdelivr.net/npm/prismjs/prism.min.js
+  prismjs_lineNumber_js: https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js
+  prismjs_autoloader: https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js
+
+  artitalk: https://cdn.jsdelivr.net/npm/artitalk
